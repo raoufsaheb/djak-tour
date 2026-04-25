@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: Create issues from TODOs
-        uses: alstr/todo-to-issue-action@v4
+        uses: alstr/todo-to-issue-action@v5
         with:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CLOSE_ISSUES: true
