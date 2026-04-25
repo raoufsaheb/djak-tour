@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  jamiya-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jamiya-app
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    networks:
+      - jamiya-network
+
+networks:
+  jamiya-network:
+    driver: bridge

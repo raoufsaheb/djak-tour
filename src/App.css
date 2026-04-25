@@ -1,0 +1,290 @@
+/* أنماط إضافية للتطبيق */
+
+/* تنسيقات عامة */
+.app-container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #F5F7FA;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+
+/* تحسينات اللمس */
+@media (hover: none) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* إخفاء شريط التمرير */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* تحسينات للهاتف */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* فئات الرسوم المتحركة */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.5s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* تنسيقات RTL */
+[dir="rtl"] .lucide {
+  transform: scaleX(-1);
+}
+
+/* تنسيقات shadcn/ui المخصصة */
+.btn-primary {
+  @apply bg-[#1B5E20] hover:bg-[#2E7D32] text-white;
+}
+
+.btn-secondary {
+  @apply bg-[#0D47A1] hover:bg-[#1565C0] text-white;
+}
+
+/* تنسيقات البطاقات */
+.card-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.card-shadow-hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* تنسيقات الألوان */
+.text-primary-green {
+  color: #1B5E20;
+}
+
+.text-secondary-blue {
+  color: #0D47A1;
+}
+
+.text-warning-orange {
+  color: #F57C00;
+}
+
+.text-success-green {
+  color: #2E7D32;
+}
+
+.text-error-red {
+  color: #C62828;
+}
+
+.bg-primary-green {
+  background-color: #1B5E20;
+}
+
+.bg-secondary-blue {
+  background-color: #0D47A1;
+}
+
+.bg-warning-orange {
+  background-color: #F57C00;
+}
+
+.bg-success-green {
+  background-color: #2E7D32;
+}
+
+.bg-error-red {
+  background-color: #C62828;
+}
+
+/* تنسيقات مؤشر التحميل */
+.loading-spinner {
+  border: 3px solid rgba(27, 94, 32, 0.1);
+  border-top-color: #1B5E20;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* تنسيقات شريط التقدم */
+.progress-bar {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #1B5E20;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* تنسيقات الشارات */
+.badge {
+  @apply px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-success {
+  @apply bg-[#2E7D32]/10 text-[#2E7D32];
+}
+
+.badge-warning {
+  @apply bg-[#F57C00]/10 text-[#F57C00];
+}
+
+.badge-error {
+  @apply bg-[#C62828]/10 text-[#C62828];
+}
+
+.badge-info {
+  @apply bg-[#0D47A1]/10 text-[#0D47A1];
+}
+
+/* تنسيقات حقول الإدخال */
+.input-field {
+  @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white;
+  transition: all 0.2s ease;
+}
+
+.input-field:focus {
+  @apply outline-none ring-2 ring-[#1B5E20]/20 border-[#1B5E20];
+}
+
+/* تنسيقات الأزرار */
+.btn {
+  @apply px-6 py-3 rounded-xl font-semibold transition-all duration-200;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+/* تنسيقات تقطيع النص */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* تنسيقات منع التحديد */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* تنسيقات PWA */
+@media (display-mode: standalone) {
+  .app-container {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

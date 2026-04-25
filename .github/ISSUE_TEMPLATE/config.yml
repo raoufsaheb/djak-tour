@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ❓ Ask a Question
+    url: https://github.com/jamiya/jamiya-app/discussions
+    about: Ask questions and discuss with other community members
+  - name: 📖 Documentation
+    url: https://docs.jamiya.dz
+    about: Check the documentation for answers
+  - name: 💬 Discord Community
+    url: https://discord.gg/jamiya
+    about: Join our Discord community for real-time discussions

@@ -1,0 +1,14 @@
+{
+  "user": {
+    "phone": "+213550123456",
+    "password": "Ahmed123!",
+    "email": "ahmed.kader@email.com",
+    "fullName": "أحمد قادر"
+  },
+  "otp": {
+    "code": "123456"
+  },
+  "postOffice": {
+    "validNumber": "POST-2025-ALGR-0001"
+  }
+}

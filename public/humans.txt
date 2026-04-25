@@ -1,0 +1,18 @@
+/* TEAM */
+	Developer: Jamiya Team
+	Contact: contact@jamiya.dz
+	From: Algeria
+
+/* THANKS */
+	React Team
+	Vite Team
+	Tailwind CSS Team
+	shadcn/ui Team
+	Framer Motion Team
+	Zustand Team
+
+/* SITE */
+	Last update: 2025-02-28
+	Language: Arabic
+	Doctype: HTML5
+	IDE: VS Code

@@ -1,0 +1,13 @@
+# Global owners
+* @jamiya-team
+
+# Documentation
+*.md @jamiya-docs-team
+/docs/ @jamiya-docs-team
+
+# Source code
+/src/ @jamiya-dev-team
+
+# Configuration files
+*.config.* @jamiya-dev-team
+.github/ @jamiya-dev-team

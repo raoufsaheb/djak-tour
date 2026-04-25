@@ -1,0 +1,21 @@
+name: Backport
+
+on:
+  pull_request:
+    types:
+      - closed
+      - labeled
+
+jobs:
+  backport:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true && (github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'backport'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Create backport PR
+        uses: korthout/backport-action@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
