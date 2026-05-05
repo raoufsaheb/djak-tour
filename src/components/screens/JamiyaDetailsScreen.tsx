@@ -234,7 +234,11 @@ export function JamiyaDetailsScreen() {
           <motion.button
             onClick={() => {
               if (canRunSimulationFlow) {
-                setCurrentScreen('cheque');
+                setCurrentScreen('completed_group_qr');
+                return;
+              }
+              if (canJoin) {
+                setCurrentScreen('fiche_paie');
                 return;
               }
               handleBook();
@@ -249,12 +253,12 @@ export function JamiyaDetailsScreen() {
           >
             {canRunSimulationFlow ? (
               <>
-                <span>ابدأ محاكاة الشيك والالتزام</span>
+                <span>عرض QR ومتابعة العملية</span>
                 <ArrowRight className="w-5 h-5" />
               </>
             ) : canJoin ? (
               <>
-                <span>احجز مكانك الآن</span>
+                <span>ابدأ بفحص كشف الراتب</span>
                 <ArrowRight className="w-5 h-5" />
               </>
             ) : isFull ? (

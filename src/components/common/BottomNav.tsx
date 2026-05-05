@@ -28,7 +28,22 @@ export function BottomNav() {
   };
 
   // لا تظهر شريط التنقل في بعض الشاشات
-  const hiddenScreens: ScreenType[] = ['splash', 'login', 'register', 'otp', 'kyc', 'booking', 'payment', 'payment_success', 'post_office'];
+  const hiddenScreens: ScreenType[] = [
+    'splash',
+    'login',
+    'register',
+    'otp',
+    'kyc',
+    'booking',
+    'payment',
+    'payment_success',
+    'post_office',
+    'fiche_paie',
+    'completed_group_qr',
+    'cheque',
+    'engagement',
+    'sorting',
+  ];
   if (hiddenScreens.includes(currentScreen)) {
     return null;
   }

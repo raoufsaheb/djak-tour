@@ -12,11 +12,8 @@ export function FicheDePaieScreen() {
   const handleCapture = () => {
     setShowCamera(false);
     setIsScanned(true);
-    // الانتقال للشاشة التالية بعد فترة
     setTimeout(() => {
-      // التحقق من حالة المجموعة
-      // إذا كانت المجموعة مكتملة ننتقل للشيك
-      setCurrentScreen('dashboard');
+      setCurrentScreen('booking');
     }, 2000);
   };
 
@@ -49,7 +46,7 @@ export function FicheDePaieScreen() {
         <div className="bg-gradient-to-br from-[#0D47A1] to-[#1565C0] p-6 pb-8">
           <div className="flex items-center gap-3 mb-4">
             <button
-              onClick={() => setCurrentScreen('kyc')}
+              onClick={() => setCurrentScreen('jamiya_details')}
               className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center"
             >
               <ChevronLeft className="w-5 h-5 text-white" />
@@ -142,7 +139,7 @@ export function FicheDePaieScreen() {
               </motion.div>
               <h2 className="text-xl font-bold text-gray-800 mb-2">تم إرسال المستند</h2>
               <p className="text-gray-500">
-                سيتم مراجعة كشف الراتب والتحقق منه. سنوافيك بالنتيجة قريباً.
+                الدخل مقبول. يمكنك الآن متابعة دفع مستحقات التسجيل.
               </p>
             </motion.div>
           )}

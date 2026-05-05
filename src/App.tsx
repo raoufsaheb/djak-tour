@@ -20,6 +20,7 @@ import { ProfileScreen } from '@/components/screens/ProfileScreen';
 import { CompletionScreen } from '@/components/screens/CompletionScreen';
 import { CreateJamiyaScreen } from '@/components/screens/CreateJamiyaScreen';
 import { FicheDePaieScreen } from '@/components/screens/FicheDePaieScreen';
+import { CompletedGroupQRScreen } from '@/components/screens/CompletedGroupQRScreen';
 import { ChequeScanScreen } from '@/components/screens/ChequeScanScreen';
 import { EngagementScanScreen } from '@/components/screens/EngagementScanScreen';
 import { SortingScreen } from '@/components/screens/SortingScreen';
@@ -84,6 +85,8 @@ function App() {
         return <CreateJamiyaScreen />;
       case 'fiche_paie':
         return <FicheDePaieScreen />;
+      case 'completed_group_qr':
+        return <CompletedGroupQRScreen />;
       case 'cheque':
         return <ChequeScanScreen />;
       case 'engagement':

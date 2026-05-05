@@ -207,6 +207,7 @@ export type ScreenType =
   | 'error'
   | 'create_jamiya'
   | 'fiche_paie'
+  | 'completed_group_qr'
   | 'cheque'
   | 'engagement'
   | 'sorting'
