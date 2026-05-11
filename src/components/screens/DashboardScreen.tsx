@@ -68,7 +68,7 @@ export function DashboardScreen() {
               <h2 className="text-white font-bold ">{currentUser.fullName}</h2>
             </div>
           </div>
-                    <img src="/logo.jpg" alt="DJAK-TOUR Logo" className="w-10 h-10 object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+                    <img src="/logo.jpg" alt="DJAK-TOUR Logo" className="w-12 h-12 object-contain absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
     Centered Content" />
 
           <button 
@@ -265,7 +265,9 @@ export function DashboardScreen() {
                     }}
                     className="w-full mt-3 bg-[#1B5E20] text-white py-2 rounded-lg font-medium text-sm hover:bg-[#2E7D32] transition-colors"
                   >
-                    احجز مكانك
+                    {jamiya.status === 'completed'
+                      ? 'احجز مكانك في قائمة الانتظار'
+                      : 'احجز مكانك'}
                   </button>
                 </motion.div>
               ))}
@@ -316,7 +318,7 @@ export function DashboardScreen() {
               <p className="text-2xl font-bold text-gray-800">
                 {formatCurrency(currentUser.totalSavings * 0.12)}
               </p>
-              <p className="text-sm text-gray-500">العائد المتوقع</p>
+              <p className="text-sm text-gray-500"> المبلغ الوارد إدخاره</p>
             </motion.div>
           </div>
         </section>

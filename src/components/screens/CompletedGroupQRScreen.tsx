@@ -45,7 +45,7 @@ export function CompletedGroupQRScreen() {
         <div className="bg-[#F57C00]/10 rounded-xl p-4 border border-[#F57C00]/30 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-[#F57C00] flex-shrink-0 mt-0.5" />
           <p className="text-sm text-[#F57C00] font-medium">
-            يجب التوجه إلى أقرب بريد قبل 48 ساعة لاستخراج وثيقة الالتزام، ولن تسترجع أموال حجزك في حالة انتهاء المدة.
+           يرجى التوجه إلى اقرب مصلحة بريد و القيام بالالتزام و هذا خلال 48ساعة و الا لن يتم تعويض الاشتراك المدفوع مسبقا
           </p>
         </div>
 

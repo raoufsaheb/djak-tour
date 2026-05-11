@@ -129,29 +129,7 @@ export function BookingScreen() {
           <h3 className="font-bold text-gray-800 mb-4">طريقة الدفع</h3>
           
           <div className="space-y-3">
-            <button
-              onClick={() => setPaymentMethod('card')}
-              className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${
-                paymentMethod === 'card'
-                  ? 'border-[#1B5E20] bg-[#1B5E20]/5'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                paymentMethod === 'card' ? 'bg-[#1B5E20]' : 'bg-gray-100'
-              }`}>
-                <CreditCard className={`w-6 h-6 ${
-                  paymentMethod === 'card' ? 'text-white' : 'text-gray-500'
-                }`} />
-              </div>
-              <div className="flex-1 text-right">
-                <p className="font-bold text-gray-800">بطاقة بنكية</p>
-                <p className="text-sm text-gray-500">Visa / MasterCard</p>
-              </div>
-              {paymentMethod === 'card' && (
-                <CheckCircle className="w-6 h-6 text-[#1B5E20]" />
-              )}
-            </button>
+          
 
             <button
               onClick={() => setPaymentMethod('ccp')}

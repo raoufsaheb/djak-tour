@@ -117,7 +117,7 @@ export function FicheDePaieScreen() {
                 className="bg-amber-50 rounded-xl p-4 border border-amber-200"
               >
                 <p className="text-amber-800 text-sm text-center">
-                  سيتم التحقق من كشف الراتب خلال 24 ساعة
+                  تم التحقق و راتبك يأهلك للإدخار في هذه الجمعية
                 </p>
               </motion.div>
             </>

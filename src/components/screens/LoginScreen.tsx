@@ -179,7 +179,7 @@ export function LoginScreen() {
         {/* بيانات تجريبية */}
         <div className="mt-6 p-4 bg-gray-50 rounded-xl">
           <p className="text-xs text-gray-500 text-center mb-2">بيانات تجريبية للدخول:</p>
-          <div className="text-xs text-gray-600 text-center">
+          <div className="text text-gray-600 text-center">
             <p>رقم الهاتف: +213550123456</p>
             <p>كلمة المرور: Ahmed123!</p>
           </div>

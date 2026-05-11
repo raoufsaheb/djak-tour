@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@/store/useStore';
-import { Camera, User, CheckCircle, Clock, ArrowRight, ScanLine } from 'lucide-react';
+import { Camera, User, CheckCircle, Clock, ArrowRight, ScanLine, Banknote } from 'lucide-react';
 import { CameraScanMock } from '@/components/common/CameraScanMock';
 
 export function KYCScreen() {
@@ -10,6 +10,7 @@ export function KYCScreen() {
   const [showCamera, setShowCamera] = useState(false);
   const [idCardScanned, setIdCardScanned] = useState(false);
   const [selfieScanned, setSelfieScanned] = useState(false);
+  const [chequeScanned, setChequeScanned] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
@@ -23,11 +24,17 @@ export function KYCScreen() {
     setSelfieScanned(true);
   };
 
+  const handleChequeCapture = () => {
+    setShowCamera(false);
+    setChequeScanned(true);
+  };
+
   const handleContinue = () => {
     if (step === 1 && idCardScanned) {
-      // بعد مسح بطاقة الهوية، ننتقل لكشف الراتب أولاً ثم السيلفي
       setStep(2);
     } else if (step === 2 && selfieScanned) {
+      setStep(3);
+    } else if (step === 3 && chequeScanned) {
       handleSubmit();
     }
   };
@@ -39,7 +46,7 @@ export function KYCScreen() {
     setIsProcessing(false);
     setIsComplete(true);
     setTimeout(() => {
-      setCurrentScreen('fiche_paie');
+      setCurrentScreen('dashboard');
     }, 2000);
   };
 
@@ -123,7 +130,7 @@ export function KYCScreen() {
         </motion.div>
         <h1 className="text-2xl font-bold text-gray-800 mb-2">تم إرسال المستندات</h1>
         <p className="text-gray-500 text-center mb-8">
-          جاري مراجعة مستنداتك، سيتم إشعارك عند الانتهاء
+          جاري التحقق من تطابق بطاقة التعريف مع السيلفي وUN CHEQUE BARRÉ.
         </p>
         <motion.div
           className="w-8 h-8 border-2 border-[#1B5E20] border-t-transparent rounded-full"
@@ -139,15 +146,23 @@ export function KYCScreen() {
       <AnimatePresence>
         {showCamera && (
           <CameraScanMock
-            title={step === 1 ? 'تصوير بطاقة التعريف' : 'التقاط صورة شخصية'}
-            subtitle={step === 1 ? 'ID Card Scan' : 'Selfie Capture'}
+            title={
+              step === 1
+                ? 'تصوير بطاقة التعريف'
+                : step === 2
+                ? 'التقاط صورة شخصية'
+                : 'تصوير UN CHEQUE BARRÉ'
+            }
+            subtitle={step === 1 ? 'ID Card Scan' : step === 2 ? 'Selfie Capture' : 'Cheque Barre'}
             guideText={
               step === 1
                 ? 'ضع بطاقة التعريف ضمن الإطار وتأكد من وضوح جميع البيانات'
-                : 'ضع وجهك داخل الإطار وانظر مباشرة للكاميرا'
+                : step === 2
+                ? 'ضع وجهك داخل الإطار وانظر مباشرة للكاميرا'
+                : 'ضع الشيك المشطوب ضمن الإطار وتأكد من وضوح جميع البيانات البنكية'
             }
-            frameColor={step === 1 ? '#1B5E20' : '#0D47A1'}
-            onCapture={step === 1 ? handleIdCardCapture : handleSelfieCapture}
+            frameColor={step === 1 ? '#1B5E20' : step === 2 ? '#0D47A1' : '#C62828'}
+            onCapture={step === 1 ? handleIdCardCapture : step === 2 ? handleSelfieCapture : handleChequeCapture}
             onCancel={() => setShowCamera(false)}
           />
         )}
@@ -163,7 +178,7 @@ export function KYCScreen() {
         <div className="bg-gradient-to-br from-[#1B5E20] to-[#2E7D32] p-6 pb-12">
           <h1 className="text-2xl font-bold text-white text-center">التحقق من الهوية</h1>
           <p className="text-white/80 text-center mt-2">
-            خطوة {step} من 2
+            خطوة {step} من 3
           </p>
         </div>
 
@@ -238,7 +253,7 @@ export function KYCScreen() {
                 </ul>
               </div>
             </motion.div>
-          ) : (
+          ) : step === 2 ? (
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -307,13 +322,83 @@ export function KYCScreen() {
                 </ul>
               </div>
             </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 bg-[#C62828]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Banknote className="w-8 h-8 text-[#C62828]" />
+                </div>
+                <h2 className="text-xl font-bold text-gray-800 mb-2">UN CHEQUE BARRÉ</h2>
+                <p className="text-gray-500 text-sm">
+                  قم بتصوير شيك مشطوب واضح للتحقق من تطابق المعلومات البنكية
+                </p>
+              </div>
+
+              <div
+                onClick={() => !chequeScanned && setShowCamera(true)}
+                className={`relative border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all ${
+                  chequeScanned
+                    ? 'border-[#C62828] bg-[#C62828]/5'
+                    : 'border-gray-300 bg-gray-50 hover:border-gray-400'
+                }`}
+              >
+                {chequeScanned ? (
+                  <div className="space-y-3">
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      className="w-16 h-16 bg-[#2E7D32]/20 rounded-full flex items-center justify-center mx-auto"
+                    >
+                      <CheckCircle className="w-8 h-8 text-[#2E7D32]" />
+                    </motion.div>
+                    <p className="text-[#2E7D32] font-medium">تم المسح بنجاح</p>
+                    <p className="text-gray-400 text-xs">UN CHEQUE BARRÉ</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mx-auto">
+                      <Camera className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <div>
+                      <p className="text-gray-700 font-medium">اضغط للتصوير</p>
+                      <p className="text-gray-400 text-sm mt-1">سيتم فتح الكاميرا</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="bg-gray-50 rounded-xl p-4">
+                <p className="text-sm font-medium text-gray-700 mb-2">متطلبات المسح:</p>
+                <ul className="space-y-1 text-sm text-gray-500">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#2E7D32]" />
+                    <span>شيك مشطوب واضح وكامل البيانات</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#2E7D32]" />
+                    <span>بيانات الحساب البنكي مقروءة</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-[#2E7D32]" />
+                    <span>الاسم مطابق لبطاقة التعريف</span>
+                  </li>
+                </ul>
+              </div>
+            </motion.div>
           )}
 
           {/* أزرار التنقل */}
           <div className="mt-8 space-y-3">
             <motion.button
               onClick={handleContinue}
-              disabled={isProcessing || (step === 1 ? !idCardScanned : !selfieScanned)}
+              disabled={
+                isProcessing ||
+                (step === 1 ? !idCardScanned : step === 2 ? !selfieScanned : !chequeScanned)
+              }
               whileTap={{ scale: 0.98 }}
               className="w-full bg-[#1B5E20] text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#1B5E20]/30 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
@@ -325,7 +410,7 @@ export function KYCScreen() {
                 />
               ) : (
                 <>
-                  <span>{step === 1 ? 'التالي' : 'إرسال للمراجعة'}</span>
+                  <span>{step < 3 ? 'التالي' : 'إرسال للمراجعة'}</span>
                   <ArrowRight className="w-5 h-5" />
                 </>
               )}
@@ -337,8 +422,8 @@ export function KYCScreen() {
               </button>
             )}
 
-            {step === 2 && (
-              <button onClick={() => setStep(1)} className="w-full text-gray-500 font-medium py-2">
+            {step > 1 && (
+              <button onClick={() => setStep(step - 1)} className="w-full text-gray-500 font-medium py-2">
                 رجوع
               </button>
             )}
