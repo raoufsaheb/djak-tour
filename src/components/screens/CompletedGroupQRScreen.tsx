@@ -50,10 +50,10 @@ export function CompletedGroupQRScreen() {
         </div>
 
         <button
-          onClick={() => setCurrentScreen('cheque')}
+          onClick={() => setCurrentScreen('sorting')}
           className="w-full bg-[#1B5E20] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#2E7D32] transition-colors"
         >
-          متابعة العملية
+          متابعة مباشرة
         </button>
       </div>
     </motion.div>

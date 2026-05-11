@@ -48,12 +48,12 @@ export function SortingLoader({ members, onComplete }: SortingLoaderProps) {
               position: idx + 1,
             }))
             .filter((m) => m.userId);
-          setTimeout(() => onComplete(finalOrder), 500);
+          setTimeout(() => onComplete(finalOrder), 7000);
           return prev;
         }
         return prev + 1;
       });
-    }, 900);
+    }, 7000);
 
     let arr = [...names];
     for (let i = arr.length - 1; i > 0; i--) {
@@ -91,7 +91,8 @@ export function SortingLoader({ members, onComplete }: SortingLoaderProps) {
           </motion.div>
         </div>
         <h2 className="text-2xl font-bold text-white mb-2">
-          جاري تحديد ترتيب الاستلام...
+          مبروك تم قبول ملفك بالكامل 
+          و الان تتم عملية الفرز ...
         </h2>
         <p className="text-white/70">
           {STEPS[currentStep]?.text}
