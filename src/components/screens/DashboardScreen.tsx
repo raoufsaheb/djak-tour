@@ -132,7 +132,7 @@ export function DashboardScreen() {
         {activeMemberships.length > 0 && (
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-gray-800">عضوياتك النشطة</h3>
+              <h3 className="text-lg font-bold text-gray-800 bg-[gold] px-5 py-[10px] rounded-lg">عضوياتك النشطة</h3>
               <button 
                 onClick={() => setCurrentScreen('active_membership')}
                 className="text-[#0D47A1] text-sm font-medium flex items-center gap-1"
@@ -191,7 +191,7 @@ export function DashboardScreen() {
         {/* الجمعيات المتاحة */}
         <section>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-800">جمعيات متاحة لك</h3>
+            <h3 className="text-lg font-bold text-gray-800 bg-[gold] px-5 py-[10px] rounded-lg">جمعيات متاحة لك</h3>
             <button className="text-[#0D47A1] text-sm font-medium flex items-center gap-1">
               <span>عرض الكل</span>
               <ChevronLeft className="w-4 h-4" />
@@ -291,7 +291,7 @@ export function DashboardScreen() {
 
         {/* إحصائيات سريعة */}
         <section>
-          <h3 className="text-lg font-bold text-gray-800 mb-4">إحصائياتك</h3>
+          <h3 className="text-lg font-bold text-gray-800 bg-[gold] px-5 py-[10px] rounded-lg mb-4">إحصائياتك</h3>
           <div className="grid grid-cols-2 gap-3">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}

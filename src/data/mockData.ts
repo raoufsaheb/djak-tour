@@ -19,7 +19,7 @@ export const mockUsers: User[] = [
     id: 'user_1',
     phone: '+213550123456',
     email: 'ahmed.kader@email.com',
-    password: 'inesS123@',
+    password: 'Ahmed123!',
     fullName: 'أحمد قادر',
     incomeLevel: 'medium',
     kycStatus: 'verified',

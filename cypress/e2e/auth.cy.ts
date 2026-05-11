@@ -1,3 +1,5 @@
+import { describe, beforeEach, it } from "node:test";
+
 describe('Authentication', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -17,7 +19,7 @@ describe('Authentication', () => {
   it('should login with valid credentials', () => {
     cy.wait(3000);
     cy.get('input[type="tel"]').type('550123456');
-    cy.get('input[type="password"]').type('inesS123@');
+    cy.get('input[type="password"]').type('Ahmed123!');
     cy.get('button[type="submit"]').click();
     
     // Should redirect to dashboard

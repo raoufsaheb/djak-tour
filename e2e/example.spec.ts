@@ -26,7 +26,7 @@ test('login with valid credentials', async ({ page }) => {
   
   // Fill login form
   await page.fill('input[type="tel"]', '550123456');
-  await page.fill('input[type="password"]', 'inesS123@');
+  await page.fill('input[type="password"]', 'Ahmed123!');
   await page.click('button[type="submit"]');
   
   // Should see dashboard
