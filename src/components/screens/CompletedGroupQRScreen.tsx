@@ -50,10 +50,10 @@ export function CompletedGroupQRScreen() {
         </div>
 
         <button
-          onClick={() => setCurrentScreen('sorting')}
+          onClick={() => setCurrentScreen('post_office_verified')}
           className="w-full bg-[#1B5E20] text-white py-4 rounded-xl font-bold text-lg hover:bg-[#2E7D32] transition-colors"
         >
-          متابعة مباشرة
+          متابعة
         </button>
       </div>
     </motion.div>

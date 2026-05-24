@@ -19,8 +19,12 @@ import { NotificationsScreen } from '@/components/screens/NotificationsScreen';
 import { ProfileScreen } from '@/components/screens/ProfileScreen';
 import { CompletionScreen } from '@/components/screens/CompletionScreen';
 import { CreateJamiyaScreen } from '@/components/screens/CreateJamiyaScreen';
+import { CreateGroupFicheScreen } from '@/components/screens/CreateGroupFicheScreen';
+import { CreateGroupPaymentScreen } from '@/components/screens/CreateGroupPaymentScreen';
+import { CreateGroupPublishScreen } from '@/components/screens/CreateGroupPublishScreen';
 import { FicheDePaieScreen } from '@/components/screens/FicheDePaieScreen';
 import { CompletedGroupQRScreen } from '@/components/screens/CompletedGroupQRScreen';
+import { PostOfficeVerifiedScreen } from '@/components/screens/PostOfficeVerifiedScreen';
 import { ChequeScanScreen } from '@/components/screens/ChequeScanScreen';
 import { EngagementScanScreen } from '@/components/screens/EngagementScanScreen';
 import { SortingScreen } from '@/components/screens/SortingScreen';
@@ -83,10 +87,18 @@ function App() {
         return <CompletionScreen />;
       case 'create_jamiya':
         return <CreateJamiyaScreen />;
+      case 'create_group_fiche':
+        return <CreateGroupFicheScreen />;
+      case 'create_group_payment':
+        return <CreateGroupPaymentScreen />;
+      case 'create_group_publish':
+        return <CreateGroupPublishScreen />;
       case 'fiche_paie':
         return <FicheDePaieScreen />;
       case 'completed_group_qr':
         return <CompletedGroupQRScreen />;
+      case 'post_office_verified':
+        return <PostOfficeVerifiedScreen />;
       case 'cheque':
         return <ChequeScanScreen />;
       case 'engagement':

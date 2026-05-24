@@ -4,6 +4,7 @@ import type { User, Jamiya, Transaction, Notification, ActiveMembership, Booking
 
 // الثوابت
 export const ACTIVATION_FEE = 2000; // رسوم التفعيل بالدينار الجزائري
+export const CREATE_GROUP_FEE = 3000; // رسوم إنشاء ونشر الغروب
 export const BOOKING_EXPIRY = 48 * 60 * 60 * 1000; // 48 ساعة بالمللي ثانية
 export const MOCK_OTP_CODE = '123456'; // رمز OTP التجريبي
 

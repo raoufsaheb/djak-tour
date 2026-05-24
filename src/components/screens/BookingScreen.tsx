@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useStore } from '@/store/useStore';
 import { 
   ArrowRight, 
-  CreditCard, 
   Building2,
   Shield,
   CheckCircle,
@@ -23,7 +22,6 @@ export function BookingScreen() {
     error 
   } = useStore();
   
-  const [paymentMethod, setPaymentMethod] = useState<'card' | 'ccp'>('card');
   const [isProcessing, setIsProcessing] = useState(false);
 
   if (!selectedJamiya || !currentUser) {
@@ -38,7 +36,7 @@ export function BookingScreen() {
     // محاكاة معالجة الدفع (3 ثواني)
     await new Promise(resolve => setTimeout(resolve, 3000));
 
-    const booking = createBooking(selectedJamiya.id, paymentMethod);
+    const booking = createBooking(selectedJamiya.id, 'ccp');
     
     if (booking) {
       setSelectedBooking(booking);
@@ -128,32 +126,15 @@ export function BookingScreen() {
         >
           <h3 className="font-bold text-gray-800 mb-4">طريقة الدفع</h3>
           
-          <div className="space-y-3">
-          
-
-            <button
-              onClick={() => setPaymentMethod('ccp')}
-              className={`w-full p-4 rounded-xl border-2 flex items-center gap-4 transition-all ${
-                paymentMethod === 'ccp'
-                  ? 'border-[#1B5E20] bg-[#1B5E20]/5'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                paymentMethod === 'ccp' ? 'bg-[#1B5E20]' : 'bg-gray-100'
-              }`}>
-                <Building2 className={`w-6 h-6 ${
-                  paymentMethod === 'ccp' ? 'text-white' : 'text-gray-500'
-                }`} />
-              </div>
-              <div className="flex-1 text-right">
-                <p className="font-bold text-gray-800">حساب بريدي (CCP)</p>
-                <p className="text-sm text-gray-500">الدفع عبر مكتب البريد</p>
-              </div>
-              {paymentMethod === 'ccp' && (
-                <CheckCircle className="w-6 h-6 text-[#1B5E20]" />
-              )}
-            </button>
+          <div className="w-full p-4 rounded-xl border-2 border-[#1B5E20] bg-[#1B5E20]/5 flex items-center gap-4">
+            <div className="w-12 h-12 rounded-xl bg-[#1B5E20] flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-white" />
+            </div>
+            <div className="flex-1 text-right">
+              <p className="font-bold text-gray-800">حساب بريدي (CCP)</p>
+              <p className="text-sm text-gray-500">الدفع عبر مكتب البريد</p>
+            </div>
+            <CheckCircle className="w-6 h-6 text-[#1B5E20]" />
           </div>
         </motion.div>
 

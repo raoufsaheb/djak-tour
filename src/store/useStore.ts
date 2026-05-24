@@ -9,7 +9,9 @@ import type {
   Notification,
   ScreenType,
   IncomeLevel,
-  KYCStatus 
+  KYCStatus,
+  DraftGroup,
+  JamiyaStatus,
 } from '@/types';
 import { 
   mockUsers, 
@@ -41,6 +43,7 @@ export interface AppState {
   previousScreen: ScreenType | null;
   selectedJamiya: Jamiya | null;
   selectedBooking: Booking | null;
+  draftGroup: DraftGroup | null;
   
   // التحميل والأخطاء
   isLoading: boolean;
@@ -78,9 +81,12 @@ export interface AppActions {
   getJamiyaById: (id: string) => Jamiya | undefined;
   getUserJamiyas: (userId: string) => Jamiya[];
   createJamiya: (jamiyaData: Partial<Jamiya>) => Jamiya | null;
+  publishJamiya: (jamiyaId: string) => void;
+  setDraftGroup: (draft: Partial<DraftGroup>) => void;
+  clearDraftGroup: () => void;
   
   // إدارة الحجوزات
-  createBooking: (jamiyaId: string, paymentMethod: 'card' | 'ccp') => Booking | null;
+  createBooking: (jamiyaId: string, paymentMethod?: 'ccp') => Booking | null;
   confirmBooking: (postOfficeNumber: string) => boolean;
   cancelBooking: (bookingId: string) => void;
   getUserBookings: (userId: string) => Booking[];
@@ -119,6 +125,7 @@ const initialState: AppState = {
   previousScreen: null,
   selectedJamiya: null,
   selectedBooking: null,
+  draftGroup: null,
   isLoading: false,
   error: null,
   successMessage: null,
@@ -255,6 +262,22 @@ export const useStore = create<AppState & AppActions>()(
         );
       },
       
+      setDraftGroup: (draft) => set((state) => ({
+        draftGroup: {
+          name: '',
+          monthlyAmount: 0,
+          maxMembers: 6,
+          duration: 6,
+          description: '',
+          ficheUploaded: false,
+          paymentCompleted: false,
+          ...state.draftGroup,
+          ...draft,
+        },
+      })),
+
+      clearDraftGroup: () => set({ draftGroup: null }),
+
       createJamiya: (jamiyaData: Partial<Jamiya>) => {
         const { currentUser } = get();
         if (!currentUser) return null;
@@ -266,7 +289,7 @@ export const useStore = create<AppState & AppActions>()(
           duration: jamiyaData.duration || 6,
           maxMembers: jamiyaData.maxMembers || 6,
           currentMembers: 1,
-          status: 'under_review',
+          status: (jamiyaData.status as JamiyaStatus) || 'under_review',
           currentCycle: 0,
           incomeLevel: jamiyaData.incomeLevel || currentUser.incomeLevel,
           progress: Math.round((1 / (jamiyaData.maxMembers || 6)) * 100),
@@ -297,6 +320,25 @@ export const useStore = create<AppState & AppActions>()(
         
         return newJamiya;
       },
+
+      publishJamiya: (jamiyaId) => {
+        const { currentUser } = get();
+        set((state) => ({
+          jamiyas: state.jamiyas.map((j) =>
+            j.id === jamiyaId ? { ...j, status: 'open' as JamiyaStatus } : j
+          ),
+        }));
+
+        if (currentUser) {
+          const jamiya = get().jamiyas.find((j) => j.id === jamiyaId);
+          get().addNotification({
+            userId: currentUser.id,
+            title: 'تم نشر الغروب',
+            message: `تم نشر غروب "${jamiya?.name}" وهو متاح الآن للانضمام`,
+            type: 'success',
+          });
+        }
+      },
       
       // إدارة الحجوزات
       createBooking: (jamiyaId, paymentMethod) => {
@@ -322,7 +364,7 @@ export const useStore = create<AppState & AppActions>()(
           jamiyaName: jamiya.name,
           status: 'pending',
           activationFee: ACTIVATION_FEE,
-          paymentMethod,
+          paymentMethod: paymentMethod ?? 'ccp',
           createdAt: new Date().toISOString(),
           expiresAt: new Date(Date.now() + BOOKING_EXPIRY).toISOString(),
         };

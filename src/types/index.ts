@@ -69,7 +69,7 @@ export interface Booking {
   jamiyaName: string;
   status: BookingStatus;
   activationFee: number;
-  paymentMethod: 'card' | 'ccp';
+  paymentMethod: 'ccp';
   postOfficeNumber?: string;
   createdAt: string;
   expiresAt: string;
@@ -174,6 +174,17 @@ export interface AppState {
   resetData: () => void;
 }
 
+// مسودة إنشاء غروب جديد
+export interface DraftGroup {
+  name: string;
+  monthlyAmount: number;
+  maxMembers: number;
+  duration: number;
+  description: string;
+  ficheUploaded: boolean;
+  paymentCompleted: boolean;
+}
+
 // عضو التقويم
 export interface CalendarMember {
   position: number;
@@ -206,8 +217,12 @@ export type ScreenType =
   | 'success'
   | 'error'
   | 'create_jamiya'
+  | 'create_group_fiche'
+  | 'create_group_payment'
+  | 'create_group_publish'
   | 'fiche_paie'
   | 'completed_group_qr'
+  | 'post_office_verified'
   | 'cheque'
   | 'engagement'
   | 'sorting'

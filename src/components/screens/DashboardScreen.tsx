@@ -188,6 +188,16 @@ export function DashboardScreen() {
           </section>
         )}
 
+        <section>
+          <button
+            onClick={handleCreateJamiya}
+            className="w-full bg-gradient-to-l from-[#7C4DFF] to-[#651FFF] text-white py-4 rounded-xl font-bold shadow-lg flex items-center justify-center gap-2"
+          >
+            <Plus className="w-5 h-5" />
+            <span>إنشاء غروب جديد</span>
+          </button>
+        </section>
+
         {/* الجمعيات المتاحة */}
         <section>
           <div className="flex items-center justify-between mb-4">
@@ -283,7 +293,7 @@ export function DashboardScreen() {
                 className="inline-flex items-center gap-2 text-[#0D47A1] font-medium"
               >
                 <Plus className="w-5 h-5" />
-                <span>إنشاء جمعية جديدة</span>
+                <span>إنشاء غروب جديد</span>
               </button>
             </div>
           )}
