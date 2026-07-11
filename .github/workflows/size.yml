@@ -23,7 +23,7 @@ jobs:
         run: npm run build
       
       - name: Check bundle size
-        uses: preactjs/compressed-size-action@v2
+        uses: preactjs/compressed-size-action@v3
         with:
           pattern: "dist/**/*.{js,css}"
           build-script: "npm run build"
