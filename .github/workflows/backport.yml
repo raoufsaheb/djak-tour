@@ -16,6 +16,6 @@ jobs:
           fetch-depth: 0
       
       - name: Create backport PR
-        uses: korthout/backport-action@v2
+        uses: korthout/backport-action@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
